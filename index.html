@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Frontend Mentor | Interactive card details form</title>
+</head>
+<body>
+  <main>
+    <section class="main">
+      <aside class="aside">
+        <div class="cardImgFront">
+          <div>
+            <img src="./images/card-logo.svg" alt="">
+          </div>
+  
+          <div>
+            <div id="cardNumber" class="spacing">0000 0000 0000 0000</div>
+            <div class="flexItem2">
+              <p id="cardHolder">Jane Appleseed</p>
+              <p><span id="mm">00</span>/<span id="yy">00</span></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cardImgBack">
+          <p id="cvc" class="cvc">000</p>
+        </div>
+      </aside>
+      
+      <div class="container">
+        <form action="">
+          <div>
+            <label> Cardholder Name <br>
+              <input class="cardholderName" placeholder="e.g. Jane Appleseed" type="text" required>
+            </label>
+          </div>
+
+          <div>
+            <label>Card Number <br>
+              <input class="card-num" placeholder="e.g. 1234 5678 9123 0000" type="text" required>
+            </label>
+          </div>
+
+          <div class="flexrow">
+            <div class="flexrow1">
+              <div>
+                <label>Exp. Date <br>
+                  <input class="dataMM input1" placeholder="MM"  class="input1" type="text" required>
+                </label>
+              </div>
+  
+              <div>
+                <label>(MM/YY) <br>
+                  <input class="dataYY input1" placeholder="YY"  class="input1" type="text" required>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label>CVC <br>
+                <input class="cardCVC input2" placeholder="e.g. 123" type="text" required>
+              </label>
+            </div>
+          </div>
+
+          <button type="button" class="confirm" onclick="displaySuccess()">Confirm</button>
+        </form>
+      </div>
+
+      <div class="non">
+        <div>
+          <img src="./images/icon-complete.svg" alt="">
+        </div>
+
+        <div class="Continue">
+          <h1>THANK YOU!</h1>
+          <p id="carddetails">We've added your card details.</p>
+        </div>
+
+        <div class="Continue">
+          <button id="Continue" >Continue</button>
+        </div>
+      </div>
+    </section>
+  </main> 
+  <footer>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </footer>
+</body>
+<script>
+  const elements = {
+    cvc: document.getElementById("cvc"),
+    cardNumber: document.getElementById("cardNumber"),
+    cardHolder: document.getElementById("cardHolder"),
+    expmm: document.getElementById("mm"),
+    expyy: document.getElementById("yy"),
+    cardholderName: document.querySelector(".cardholderName"),
+    cardNum: document.querySelector(".card-num"),
+    dataYY: document.querySelector(".dataYY"),
+    cardCVC: document.querySelector(".cardCVC"),
+    dataMM: document.querySelector(".dataMM"),
+    container: document.querySelector(".container"),
+    non: document.querySelector(".non")
+  };
+
+  elements.cardholderName.addEventListener('keyup', updateCardHolder);
+  elements.cardNum.addEventListener('keyup', updateCardNumber);
+  elements.dataMM.addEventListener('keyup', updateExpirationMonth);
+  elements.dataYY.addEventListener('keyup', updateExpirationYear);
+  elements.cardCVC.addEventListener('keyup', updateCVC);
+
+  function updateCardHolder() {
+    let text = elements.cardholderName.value;
+    elements.cardHolder.innerText = text.length === 0 ? 'Jane Appleseed' : text;
+  }
+
+  function updateCardNumber() {
+    let text = elements.cardNum.value;
+    elements.cardNumber.innerText = text.length === 0 ? '0000 0000 0000 0000' : text;
+  }
+
+  function updateExpirationMonth() {
+    let text = elements.dataMM.value;
+    elements.expmm.innerText = text.length === 0 ? '00' : text;
+  }
+
+  function updateExpirationYear() {
+    let text = elements.dataYY.value;
+    elements.expyy.innerText = text.length === 0 ? '00' : text;
+  }
+
+  function updateCVC() {
+    let text = elements.cardCVC.value;
+    elements.cvc.innerText = text.length === 0 ? '000' : text;
+  }
+
+  function displaySuccess() {
+    elements.container.classList.add("none");
+    elements.container.classList.remove("container");
+    elements.non.classList.add("success");
+    elements.non.classList.remove("non");
+  }
+</script>
+</html>
